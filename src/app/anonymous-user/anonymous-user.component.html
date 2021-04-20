@@ -1,0 +1,43 @@
+
+<app-navbar-header></app-navbar-header>
+<div class="container mb-5 mt-5" >
+    <div class="row" >
+
+     <!--Card 1-->  
+     <div class="col-lg-3" *ngFor = "let product of allProducts">
+       <div class="card mt-3">
+         <div class="product-1 align-items-center p-2 text-center">
+           <img src="{{product.productImage}}" alt="Apple" class="rounded" width="163px" height="150px">
+           <h5>{{product.productName}},
+               {{product.manufacturer}}
+               
+           </h5>
+
+           <!--card info-->
+           <div class="mt-3 info">
+             <span class="text1 d-block"> {{product.dimension}}</span>
+             <span class="text1">No cost EMI starting from ₹4,167/month</span>
+           </div>
+           <div class="cost mt-3 text-dark">
+             <span>{{product.price}}</span>
+             <div class="star mt-3 align-items-center">
+               <i class="fa fa-star"></i>
+               <i class="fa fa-star"></i>
+               <i class="fa fa-star"></i>
+               <i class="fa fa-star"></i>
+               <i class="fa fa-star"></i>
+             </div>
+           </div>
+           <!--card info ends here-->
+         </div>
+
+         <!--Buttons for cards-->
+            <div class="p-3 mobile text-center text-white mt-3 cursor">
+                <span class="text-uppercase"><a [routerLink]="['/customer-login']" style="color: white;">Add to cart</a></span>
+            </div>
+       </div>
+     </div>
+       <!--card 1 ends here-->
+
+       
+    

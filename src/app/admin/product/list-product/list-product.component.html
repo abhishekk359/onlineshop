@@ -1,0 +1,174 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <img src="https://api.freelogodesign.org/files/fdb1f155327c4bb99634113ddc2f3d2c/thumb/logo_200x200.png?v=0" alt="Brand Logo" style ="width:120px">
+    <h1><i>Welcome to Admin portal</i></h1><br>
+    <h2>
+         List of Products
+         <button
+            type="button"
+            class="btn btn-success"
+            (click)="toggleAdd()">
+           <span *ngIf="!showAddForm">+Add Product</span>
+           <span *ngIf="showAddForm">-Close</span>
+
+        </button>
+        &nbsp;
+        <button
+        type="button"
+        class="btn btn-success"
+        (click)="toggleAddCategory()">
+       <span *ngIf="!showAddFormCategory">+Add Category</span>
+       <span *ngIf="showAddFormCategory">-Close</span>
+    </button>
+        </h2>
+
+        <div *ngIf="showAddFormCategory">
+            <div class="row">
+        <div class="col">
+            <form (submit)="addCategory()">
+                <table>
+               <tr>
+                   <td> Category Name :</td>
+                   </tr>
+               <tr> <td>
+                   <input
+                    type="text"
+                   [(ngModel)]="categoryName"
+                    name="categoryName"/>
+                    </td>
+                    </tr> 
+                    </table>
+
+                    <button type="submit" class="btn btn-success">Add Category</button>  
+            </form>
+                </div>
+            </div>
+     </div>
+                
+
+        <div *ngIf="showAddForm">
+            <div class="row">
+        <div class="col">
+            <form (submit)="addProduct()">
+                <table>
+               <tr>
+                   <td> Product Name :</td>
+                   </tr>
+               <tr> <td><input
+                    type="text"
+                   [(ngModel)]="productName"
+                    name="productName"/>
+                    </td>
+                    </tr>
+               <tr>    
+                <td>Product Cost :</td>
+                <tr>
+                    <td> <input
+                        type="text"
+                        [(ngModel)]="price"
+                        name="price"/>
+                </td>
+               </tr>
+               <tr>
+                <td>Product color :</td>
+                </tr>
+                   <tr>
+                       <td> <input
+                        type="text"
+                        [(ngModel)]="color"
+                        name="color"/>
+                </td>
+               </tr>
+               <tr>
+                   <td>
+                 Product dimension :
+                </td>
+            </tr>
+                       <tr><td> <input
+                            type="text"
+                            [(ngModel)]="dimension"
+                            name="dimension"/>
+                    </td>
+               </tr>
+               <tr>
+                   <td>
+                Product specification:
+                </td>
+                           <tr> 
+                               <td> <input
+                                type="text"
+                                [(ngModel)]="specification"
+                                name="specification"/>
+                            
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                Product Manufacturer :
+                    </td>
+                          <tr>
+                              <td> <input
+                                    type="text"
+                                    [(ngModel)]="manufacturer"
+                                    name="manufacturer"/>
+                                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                Cartegory Id :
+                    </td>
+                          <tr>
+                              <td> 
+                                  <input
+                                    type="number"
+                                    [(ngModel)]="category.catId"
+                                    name="catId"/>
+                                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                Product image :
+                    </td>
+                          <tr>
+                              <td> <input
+                                    type="text"
+                                    [(ngModel)]="productImage"
+                                    name="productImage"/>
+                                    </td>
+                </tr>
+                
+                
+              
+                <button type="submit" class="btn btn-success">Add Product</button>  
+                </table>
+            </form>
+        </div>
+            <div class="col">
+                <table>
+                    <thead>
+                        <th>Cat_ID</th>
+                        <th>Cat_Name</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cat of data">
+                            <td>{{cat.catId}}</td>
+                            <td>{{cat.categoryName}}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+           
+        </div>
+    </div>
+        </div>
+    <ul class="list-group-item">
+       <li class="list-group-item" *ngFor="let product of allProducts">
+           <app-product-item
+            [productData]="product"
+            (deleteEventEmitter)="deleteEventParent($event)"
+            (editEventEmitter)="editEventParent($event)">       
+        </app-product-item>
+        </li>
+    </ul>
+</div>

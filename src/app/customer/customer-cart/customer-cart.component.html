@@ -1,0 +1,81 @@
+<app-navbar-customer></app-navbar-customer>
+<br>
+&emsp;&emsp;<img src="https://api.freelogodesign.org/files/fdb1f155327c4bb99634113ddc2f3d2c/thumb/logo_200x200.png?v=0" alt="Brand Logo" style ="width:120px">
+<button class="btn btn-success" (click)="goToProduct()">Go To Product</button>
+&nbsp;
+<button class="btn btn-success" (click)="goToProfile()">Go To Profile</button>
+<!-- Cart Start -->
+<div class="cart-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-page-inner">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <!--<th>Quantity</th>
+                                    <th>Total</th>-->
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle" *ngFor="let cart of allCarts">
+                                  
+                                <tr>
+                                    <td>
+                                        <div class="img">
+                                            <a href="#"><img src="{{cart.productCart.productImage}}" alt="Image"></a>
+                                            <p>{{cart.productCart.productName}}</p>
+                                        </div>
+                                    </td>
+                                    <td>{{cart.productCart.price}}</td>
+                                  <!--  <td>
+                                        <div class="qty">
+                                            <button class="btn-minus" (click)="descCount()"><i class="fa fa-minus"></i></button>
+                                            <input type="text"   [(ngModel)]="count" > {{count}}
+                                            <button class="btn-plus" (click)="incCount()"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td>{{cart.productCart.price*count}}</td>-->
+
+                                    <td><button (click)="deleteCart(cart.cartId)"><i class="fa fa-trash"></i></button></td>
+                                </tr> 
+                                  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart-page-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="coupon">
+                                <input type="text" placeholder="Coupon Code">
+                                <button>Apply Code</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="cart-summary">
+                                <div class="cart-content">
+                                    <h1>Cart Summary</h1>
+                                    <p>Sub Total<span>Rs.{{totalCost}}</span></p>
+                                    <p>Shipping Cost<span>Rs.100</span></p>
+                                    <h2>Grand Total<span>Rs.{{grandTotal}}</span></h2>
+                                </div>
+                                <div class="cart-btn">
+                                    <button (click)="calculateTotalCost()">Total Bill</button>
+                                    <button (click)="makeOrder()">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->
+ <br><br>

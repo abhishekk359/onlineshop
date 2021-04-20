@@ -1,0 +1,41 @@
+ <app-navbar-customer></app-navbar-customer>
+
+
+<!--<div *ngFor = "let order of allOrders">
+<b>product Name: </b> {{order.productCart.productName}}
+</div>-->
+<br>
+<div class="container">
+    <button class="btn btn-primary" (click)="goToProfile()">Profile</button>
+    &nbsp;
+    <button class="btn btn-primary" (click)="myCart()">My Cart</button>
+    <h2> Thanks For Order </h2>
+    <h3>Order Details :- </h3>
+    <table class="table" >
+      <thead class="thead-dark">
+        <tr>
+          <th>Product</th>
+          <th>ProductName</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody *ngFor = "let order of allOrders">
+        <tr>
+          <td><img src="{{order.productCart.productImage}}" alt="product Image" style="width: 250px; height: 180px;"></td>
+          <td>{{order.productCart.manufacturer}},{{order.productCart.productName}}</td>
+        
+          <td>{{order.productCart.price}}</td>
+
+        </tr>
+        
+      </tbody>
+
+    </table>
+    <h4>Total Cost Of Orders: Rs.{{totalCost}} </h4>
+    <h4>Shipping Cost: Rs.100</h4>
+    <h4>Grand Total: Rs.{{grandTotal}}</h4>
+
+    <button class="btn btn-success" (click)="goToProduct()">Go To Product</button>&nbsp;
+
+    
+</div>

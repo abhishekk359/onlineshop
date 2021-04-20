@@ -1,0 +1,224 @@
+
+<app-navbar-customer></app-navbar-customer>
+<body>
+    <br>
+    <button class="btn btn-success" (click)="goToProduct()">Go To Product</button>
+    &nbsp;
+    <button class="btn btn-success" (click)="myCart()">My Cart</button>
+
+    <!-- My Account Start -->
+    <div class="my-account">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                        <button (click)="orderHistory()"><a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab" ><i class="fa fa-shopping-bag"></i>Orders</a></button>
+                       <!--- <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a>-->
+                        <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>address</a>
+                        <a class="nav-link" id="add-account-nav" data-toggle="pill" href="#add-account-tab" role="tab"><i class="fa fa-user"></i>Add address</a>
+                        <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Update Address</a>
+                        <a class="nav-link" [routerLink]="['/home']"><i class="fa fa-sign-out-alt"></i>Log out</a>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
+                            <h4>Dashboard</h4>
+                           <h3>Welcome {{customer.fullName}}</h3>
+                        </div>
+                        <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor = "let orders of allOrders; let i=index">
+                                        <tr>
+                                            <td>{{i+1}}</td>
+                                            <td>{{orders.productOrder.productName}}</td>
+                                            <td>{{orders.productOrder.price}}</td>
+                                            <td><button class="btn" (click)="goToProduct()">View</button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--<div class="tab-pane fade" id="payment-tab" role="tabpanel" aria-labelledby="payment-nav">
+                            <h4>Payment Method</h4>
+                             
+                        </div>-->
+                        <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
+                            <h4>Address</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                        <h3>Shipping Address</h3>
+                                        <p>Street No: {{addressCustomer.streetNo}}</p>
+                                        <p>Building Name: {{addressCustomer.buildingName}}</p>
+                                        <p>City: {{addressCustomer.city}}</p>
+                                        <p>State: {{addressCustomer.state}}</p>
+                                        <p>Country: {{addressCustomer.country}}</p>
+                                        <p>Pin Code: {{addressCustomer.pincode}}</p>
+                                        <p>Mobile: {{addressCustomer.customerAdd.mobileNumber}}</p>
+                                        
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="add-account-tab" role="tabpanel" aria-labelledby="add-account-nav">
+                            <h4> Add Account </h4>
+                            <form #addAddress="ngForm" (ngSubmit) = "addCustomerAddress(addAddress)">
+                            <div class="row">
+                             <!-- <div class="col-md-6">
+                                    <input class="form-control" type="text" 
+                                    name = "addressId"
+                                    [(ngModel)]="addressCustomer.addressId" 
+                                     #addressId="ngModel"
+                                     disabled >
+                                </div>-->
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="StreetNo"
+                                    name = "streetNo"
+                                    [(ngModel)]="address.streetNo" 
+                                     #streetNo="ngModel"
+                                     >
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="Building Name"
+                                    name = "buildingName"
+                                    [(ngModel)]="address.buildingName" 
+                                     #buildingName="ngModel">
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="City"
+                                    name = "city"
+                                    [(ngModel)]="address.city" 
+                                     #city="ngModel">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="State"
+                                    name = "state"
+                                    [(ngModel)]="address.state" 
+                                     #state="ngModel">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="Country"
+                                    name = "country"
+                                    [(ngModel)]="address.country" 
+                                     #country="ngModel">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="Pin Code"
+                                    name = "pincode"
+                                    [(ngModel)]="address.pincode" 
+                                     #pincode="ngModel">
+                                </div>
+                                <!--<div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="CustomerId" 
+                                    name = "customerId"
+                                    [(ngModel)]="address.customerAdd.customerId" 
+                                     #customerId="ngModel"
+                                     disabled>
+                                </div>-->
+                           
+                                <div class="col-md-12">
+                                    <button class="btn btn-success" type="submit">Add Address</button>
+                                    <br><br>
+                                </div>
+                            </div>
+                            </form>
+                          </div>
+                        <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
+                            <h4>Account Details</h4>
+                            <form #custAddress="ngForm" >
+                            <div class="row">
+                               <div class="col-md-6">
+                                    <input class="form-control" type="text" 
+                                    name = "addressId"
+                                    [(ngModel)]="addressCustomer.addressId" 
+                                     #addressId="ngModel"
+                                     disabled >
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="StreetNo"
+                                    name = "streetNo"
+                                    [(ngModel)]="addressCustomer.streetNo" 
+                                     #streetNo="ngModel"
+                                     >
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="Building Name"
+                                    name = "buildingName"
+                                    [(ngModel)]="addressCustomer.buildingName" 
+                                     #buildingName="ngModel">
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="City"
+                                    name = "city"
+                                    [(ngModel)]="addressCustomer.city" 
+                                     #city="ngModel">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="State"
+                                    name = "state"
+                                    [(ngModel)]="addressCustomer.state" 
+                                     #state="ngModel">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="Country"
+                                    name = "country"
+                                    [(ngModel)]="addressCustomer.country" 
+                                     #country="ngModel">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="Pin Code"
+                                    name = "pincode"
+                                    [(ngModel)]="addressCustomer.pincode" 
+                                     #pincode="ngModel">
+                                </div>
+                                <!--<div class="col-md-12">
+                                    <input class="form-control" type="text" placeholder="CustomerId" 
+                                    name = "customerId"
+                                    [(ngModel)]="address.customerAdd.customerId" 
+                                     #customerId="ngModel"
+                                     disabled>
+                                </div>-->
+                           
+                                <div class="col-md-12">
+                                    <button class="btn btn-success" (click)="editAddress()">Update Account</button>
+                                    <br><br>
+                                </div>
+                            </div>
+                            </form>
+
+                          <!--   <h4>Password change</h4>
+                           <div class="row">
+                                <div class="col-md-12">
+                                    <input class="form-control" type="password" placeholder="Current Password">
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="New Password">
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" placeholder="Confirm Password">
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn">Save Changes</button>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- My Account End -->
+    <div class="container" id="profile"></div>
+    
+    

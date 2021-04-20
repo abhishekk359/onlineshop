@@ -1,0 +1,100 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <h2>Edit Product</h2>
+    <form (submit)="editForm()">
+        <div class="form-group">
+            <label for="productId">Product ID</label>
+            <input 
+                type="text"
+                class="form-control"
+                id="productId"
+                [(ngModel)]="productId"
+                name="productId"
+                disabled>
+        </div>
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input 
+                type="text"
+                class="form-control"
+                id="productName"
+                [(ngModel)]="productName"
+                placeholder="Enter product name"
+                name="productName">
+        </div>
+        <div class="form-group">
+            <label for="price">Product Cost</label>
+            <input 
+                 type="text" 
+                 class="form-control"
+                 id="price"
+                 [(ngModel)]="price"
+                 placeholder="Enter product cost"
+                 name="price">
+        </div>
+        <div class="form-group">
+            <label for="color">color</label>
+            <input 
+                 type="text" 
+                 class="form-control"
+                 id="color"
+                 [(ngModel)]="color"
+                 placeholder="Enter product color"
+                 name="color">
+        </div>
+        <div class="form-group">
+            <label for="dimension">dimension</label>
+            <input 
+                 type="text" 
+                 class="form-control"
+                 id="dimension"
+                 [(ngModel)]="dimension"
+                 placeholder="Enter product dimension"
+                 name="dimension">
+        </div>
+        <div class="form-group">
+            <label for="specification">specification</label>
+            <input 
+                 type="text" 
+                 class="form-control"
+                 id="specification"
+                 [(ngModel)]="specification"
+                 placeholder="Enter product specification"
+                 name="specification">
+        </div>
+    
+        <div class="form-group">
+            <label for="manufacturer">Product Manufacturer</label>
+            <input 
+                 type="text" 
+                 class="form-control"
+                 id="manufacturer"
+                 [(ngModel)]="manufacturer"
+                 placeholder="Enter product Manufacturer"
+                 name="manufacturer">
+        </div>
+        <div class="form-group">
+            <label for="catId">Category Id</label>
+            <input 
+                 type="number" 
+                 class="form-control"
+                 id="catId"
+                 [(ngModel)]="category.catId"
+                 name="catId"
+                 disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="productimg">Product image</label>
+            <input 
+                 type="text" 
+                 class="form-control"
+                 id="productImage"
+                 [(ngModel)]="productImage"
+                 placeholder="Enter product image"
+                 name="productImage">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+

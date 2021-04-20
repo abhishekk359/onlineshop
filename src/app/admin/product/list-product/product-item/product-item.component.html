@@ -1,0 +1,28 @@
+
+<div class="d-flex justify-content-between">
+    <div>
+    <img src={{productData.productImage}} style="width: 250px; height: 180px;">
+    {{ productData.productId }},
+    {{ productData.productName }},
+    {{ productData.price }},
+    {{productData.color}},
+    {{productData.dimension}},
+    {{productData.specification}},
+    {{productData.manufacturer}},
+    {{productData.category.catId}}
+    </div>
+    <div>
+    <button 
+        type="button" 
+        class="btn btn-primary"
+        (click)="editEvent(productData.productId)">Edit
+    </button>
+    <button 
+        type="button" 
+        class="btn btn-danger ml-3 "
+        (click)="deleteEvent(productData.productId)">
+        Delete
+    </button>
+    
+    </div>
+    </div>

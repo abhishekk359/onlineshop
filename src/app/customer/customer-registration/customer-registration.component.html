@@ -1,0 +1,107 @@
+<head>
+    <script>
+    function myGoogle()
+    {
+        window.open("google.com");
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+            
+        <img src="https://api.freelogodesign.org/files/fdb1f155327c4bb99634113ddc2f3d2c/thumb/logo_200x200.png?v=0" alt="Brand Logo" style ="width:120px">
+        <h1>Online Shopping</h1>
+    </div>
+        </div>
+        </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+              <div class="card-img-left d-none d-md-flex">
+                 <!-- Background image for card set in CSS! -->
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center">Register</h5>
+                <form class="form-signin" #regForm="ngForm" (submit)="addCustomer()">
+
+                  <div class="form-label-group">
+                    <input type="fullName" id="fullName" name="fullName" 
+                     class="form-control" 
+                     placeholder="Username" 
+                     required
+                     [(ngModel)]="customer.fullName" 
+                     #fullName="ngModel">
+                     <small *ngIf="fullName.dirty && fullName.errors?.required" class="small text-danger">
+                        Full Name is mandatory
+                        </small>
+                   <label for="fullName">Full Name</label>
+                  </div>
+
+                  <div class="form-label-group">
+                    <input type="text" id="mobileNumber" name="mobileNumber" 
+                    class="form-control" 
+                    placeholder="mobile Number" 
+                   pattern="[7-9]{1}[0-9]{9}"
+                     required
+                     [(ngModel)]="customer.mobileNumber"
+                     #mobileNumber="ngModel"
+                     >
+                     <small *ngIf="mobileNumber.dirty && mobileNumber.errors?.required" class="small text-danger">
+                       Mobile Number is mandatory
+                        </small>
+                        <small *ngIf=" mobileNumber.errors?.pattern" class="small text-danger">
+                           Enter Valid Mobile Number
+                             </small>
+                    <label for="mobileNumber">Mobile Number</label>
+                  </div>
+    
+                  <div class="form-label-group">
+                    <input type="email" id="email" name="email"
+                     class="form-control"
+                      placeholder="Email address" 
+                      required
+                      [(ngModel)]="customer.email"
+                      #email="ngModel">
+                      <small *ngIf="email.dirty && email.errors?.required" class="small text-danger">
+                        Email address is mandatory
+                         </small>
+                    <label for="email">Email address</label>
+                  </div>
+                  
+                  <hr>
+    
+                  <div class="form-label-group">
+                    <input type="password" id="password" name="password"
+                     class="form-control"
+                     placeholder="Password" 
+                     required
+                     [(ngModel)]="customer.password"
+                     #password="ngModel" 
+                    >
+                    <small *ngIf="password.dirty && password.errors?.required" class="small text-danger">
+                     Password is mandatory
+                       </small>
+                    <label for="password">Password</label>
+                  </div>
+                 <!-- 
+                  <div class="form-label-group">
+                    <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                    <label for="inputConfirmPassword">Confirm password</label>
+                  </div>
+                -->
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" [disabled]="!regForm.valid" type="submit">Register</button>
+                  {{successMsg}}
+                  <a class="d-block text-center mt-2 small"  [routerLink]="['/customer-login']">Sign In</a>
+                  <hr class="my-4">
+                  <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i><a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" style="color: white;"> Sign up with Google</a></button>
+                  <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" ><i class="fab fa-facebook-f mr-2"></i><a href="https://www.facebook.com/" style="color: white;"> Sign up with Facebook</a></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
